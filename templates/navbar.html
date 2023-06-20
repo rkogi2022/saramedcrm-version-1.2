@@ -1,0 +1,65 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="{% static 'saramed-logo.jpg' %}" class="img"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              CALL LOGS
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{% url 'calls:viewsupportcall' %}">Support Calls</a></li>
+              <li><a class="dropdown-item" href="{% url 'calls:viewcourtesycall' %}">Courtesy Calls</a></li>
+              <li><a class="dropdown-item" href="{% url 'calls:viewdirectorscall' %}">Directors' Calls</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              ACCOUNTS & PAYMENTS
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{% url 'payments:clients-details' %}">Implementations</a></li>
+              <li><a class="dropdown-item" href="{% url 'payments:transactional_report' %}">Payment Reports</a></li>
+              <li><a class="dropdown-item" href="{% url 'payments:receiptsdetails' %}"> Receipts</a></li>
+              <li><a class="dropdown-item" href="{% url 'payments:invoicedetails' %}">Invoices</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              BUSINESS PROSPECTS
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{% url 'prospects:conversion-tracker' %}">Active Conversions</a></li>
+              <li><a class="dropdown-item" href="{% url 'prospects:business-prospects' %}">Business Pipeline</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'auth_app:home' %}">OVERVIEW</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a>
+          </li>
+        </ul>
+        
+
+        
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="{% static 'person.jpg' %}" style="width: 40px; height: 40px; margin-top: 0; left: 0;">
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><span><b>{{request.user}}</b></span></li>
+                <li><a href="{% url 'auth_app:logout' %}">Log Out</a></li>
+            </ul>
+          </li>
+      </div>
+    </div>
+  </nav>

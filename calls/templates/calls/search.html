@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-css">
+      <li class="breadcrumb-item"><a style="font-size: x-large; color:black; text-decoration: none;"  href="{% url 'calls:viewsupportcall' %}">Support Calls</a></li>
+      <li class="breadcrumb-item active" style="font-size: x-large; color: white;" aria-current="page">Search</li>
+    </ol>
+  </nav>
+<div class="card">
+    <div class="card-header">
+        <div class="card-body">
+            <div class="row"></div>
+            <table class="table data table-sm" >
+                <tr>
+                    <th>Facility</th>
+                    <th>Log Date</th>
+                    <th>Module</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                    </tr>
+
+                    {% for n in searcheddetails %}
+                <tr>
+                <td><a href="{% url 'calls:viewcalldetails' n.id%}">{{n.facility|upper}}</a></td>
+                <td>{{n.logdate}}</td>
+                <td>{{n.module}}</td>   
+                <td ><span class="badge {% if n.status == 'PENDING' %}bg-danger{% else %}bg-success{% endif %}">{{n.status}}</span></td>      
+                <td>
+                    <a href="{%url 'calls:update_supportcall' n.id%}"><span class="fa fa-edit" style="color: orange; font-size: large;"></span></a>&nbsp;
+                    <a href="{% url 'calls:delete_supportcall' n.id %}"><span class="fa fa-trash" style="color: red; font-size: large;"></span></a>
+                </td>
+                </tr>
+                {% endfor %}
+
+            </table> 
+        </div>
+    </div>
+</div>
+{% endblock %}

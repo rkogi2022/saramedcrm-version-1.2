@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a style="font-size: x-large; color:black; text-decoration: none;"  href="{% url 'payments:receiptsdetails' %}">Receipt</a></li>
+      <li class="breadcrumb-item active" style="font-size: x-large; color: white;" aria-current="page">Update Receipt Details</li>
+    </ol>
+  </nav>
+<center>
+    <form method = 'POST' enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class = 'w-50 table table-light' style="border-radius:10px">
+            {% csrf_token %}
+            {{ form }}
+        </table>
+        <a class="btn btn-secondary" href="{% url 'payments:receiptsdetails' %}">Cancel</a>
+        <input class="btn btn-info" type="submit" value="Update">
+    </form>
+</center>
+{% endblock %}

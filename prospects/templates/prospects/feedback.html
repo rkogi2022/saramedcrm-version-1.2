@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+    <div class="row">
+        <!-- empty row -->
+        <a href="{% url 'prospects:business-prospects' %}"><span class="fa fa-times" style="color: red; font-size: x-large;"></span></a></a> 
+    </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <table class=" data " >
+                            <tr>
+                            <th>Facility Name</th>
+                            <th>Initial Feedback</th>
+                            <th>Date</th>
+                            </tr>
+                            <tr>
+                                <td>{{prospect.facility_name|upper}}</td>
+                                <td>{{prospect.comment|upper}}</td>
+                                <td>{{prospect.created_date|upper}}</td>
+                            </tr>
+                        </table> 
+                    </div>
+                </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-9" style="margin-top: 30px;">
+                <div class="card" style="margin-top: 13px;">
+                    <center><h5>Follow-up Details</h5></center>
+                    <table class="table data " >
+                        <tr>
+                            <th>Feedback</th>
+                            <th>Date</th>
+                        </tr>
+                        {% for feedback in prospect.feedback_set.all %}
+                        <tr>
+                            <td>{{ feedback.feedback }}</td>
+                            <td>{{ feedback.feedback_timestamp }}</td>
+                        </tr>
+                        {% empty %}
+                        <p>No Feedback Available</p>
+                        {% endfor %}
+                    </table> 
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-top: 30px;">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 style="margin-top: 8px; margin-left: 85px;">Add feedback</h5>
+                    </div>
+                    <div class="card-body">
+                        
+                        <form id="myform" method="POST">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" style="background-color: orange; margin-left: 25px;">Save Feedback</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

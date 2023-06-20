@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-css">
+      <li class="breadcrumb-item"><a style="font-size: x-large; color:black; text-decoration: none;"  href="{%url 'payments:invoicedetails' %}">Receipts</a></li>
+      <li class="breadcrumb-item active" aria-current="page" style="font-size: x-large; color: white;">Create Receipts </li>
+    </ol>
+  </nav>
+<center>
+    <form method = 'POST' enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class = 'w-50 table table-light' style="border-radius:10px">
+            {% for field in form %}
+            <tr>
+                <th>{{field.label}}</th>
+                <td>{{ field }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a class="btn btn-lg button-cancel" href="{% url 'payments:receiptsdetails' %}">Cancel</a>
+        <button type="submit" class="btn btn-lg button-add">Add</button>
+    </form>
+</center>
+{% endblock %}

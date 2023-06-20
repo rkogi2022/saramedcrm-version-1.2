@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-css">
+        <li class="breadcrumb-item"><a style="font-size: x-large; color:black; text-decoration: none;"  href="{%url 'calls:viewsupportcall' %}">Support Calls</a></li>
+      <li class="breadcrumb-item active" aria-current="page" style="font-size: x-large; color: white;">Support Calls Details</li>
+    </ol>
+  </nav>
+<div class="card">
+    <div class="card-header">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-5"></div>
+                <div class="col-md-2"> 
+                    <a href=""><button type="submit" class="btn button-add">+Support Call</button></a>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table data table-sm" >
+                    <tr>
+                        <th>Problem Description</th>
+                        <th>Support Offered</th>
+                        <th>Completion Date</th>
+                        <th>Action</th>
+                        </tr>
+
+                        {% for n in calldetails %}
+                    <tr>        
+                    <td>{{n.problem|linebreaks}}</td>
+                    <td>{{n.solution|linebreaks}}</td>  
+                    <td>{{n.completiondate}}</td>
+                    <td>
+                        <a href="{%url 'calls:update_calldetails' n.id%}"><span class="fa fa-edit" style="color: orange; font-size: large;"></span></a>&nbsp;
+
+                    </td>
+                    </tr>
+                    {% endfor %}
+    
+                </table> 
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-css">
+      <li class="breadcrumb-item active" aria-current="page" style="font-size: x-large; color: white;">Directors' Calls</li>
+    </ol>
+  </nav>
+<div class="card">
+    <div class="card-header">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-5">
+                </div>
+                <div class="col-md-5"></div>
+                <div class="col-md-2"> 
+                    <a href="{% url 'calls:adddirectorscall' %}"><button type="submit" class="btn button-add">+Directors Call</button></a>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table data table-sm" >
+                    <tr>
+                        <th>Facility</th>
+                        <th>Log Date</th>
+                        <th>Call Feedback</th>
+                        <th>Action</th>
+                        </tr>
+
+                        {% for n in page.object_list %}
+                    <tr>
+                        <td>{{n.facility_name|upper}}</td>
+                        <td>{{n.logdate}}</td>
+                        <td>{{n.feedback_given|linebreaks}}</td>   
+                        <td>
+                            <a href="{%url 'calls:update_directorscall' n.id%}"><span class="fa fa-edit" style="color: orange; font-size: large;"></span></a>&nbsp;
+                            <a href="{% url 'calls:delete_directorscall' n.id %}"><span class="fa fa-trash" style="color: red; font-size: large;"></span></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+    
+                </table> 
+                <div class="container">
+                    <div class="row my-6">
+                        <div class="col-md-4 offset-md-3">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                  <li class="page-item">
+                                    {% if page.has_previous %}
+                                    <a class="page-link" href="{% url 'calls:viewdirectorscall' %}?page={{ page.previous_page_number }}">Previous</a>
+                                  </li>
+                                    {% endif %}
+                                    {% for num_page in page.paginator.page_range %} <br>
+                                    {% if page.number == num_page %}
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link"  href="{% url 'calls:viewdirectorscall' %}?page={{num_page}}">{{ num_page }}</a>
+                                    </li>
+                                    {% else %}
+                                    <li class="page-item" aria-current="page">
+                                        <a class="page-link"  href="{% url 'calls:viewdirectorscall' %}?page={{num_page}}">{{ num_page }}</a>
+                                    </li>
+                                    {% endif %} <br>
+                                    {% endfor %}
+                                  <li class="page-item">
+                                    {% if page.has_next %}
+                                    <a class="page-link" href="{% url 'calls:viewdirectorscall' %}?page={{ page.next_page_number }}">Next</a>
+                                    {% endif %}
+                                  </li>
+                                </ul>
+                              </nav>
+                        </div>
+                    </div>
+                   </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

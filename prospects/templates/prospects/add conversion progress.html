@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-css">
+      <li class="breadcrumb-item" ><a style="font-size: large; color:white; text-decoration: none;" href="{%url 'prospects:conversion-tracker' %}">Conversion Tracker</a></li>
+      <li class="breadcrumb-item active" aria-current="page" style="font-size: large; color: black;">Add Conversion Progress</li>
+    </ol>
+  </nav>
+<center>
+    <h4 class="display-7" >Add New Prospect</h4>
+    <form method = 'POST' enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class = 'w-50 table table-light' style="border-radius:10px">
+            {% for field in form %}
+            <tr>
+                <th>{{field.label}}</th>
+                <td>{{ field }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a class="btn btn-lg button-cancel" href="{% url 'prospects:conversion-tracker' %}">Cancel</a>
+        <button type="submit" class="btn btn-lg button-add">Add</button>
+    </form>
+</center>
+{% endblock %}
