@@ -21,7 +21,7 @@ from .forms import ConversionTrackerForm
 
 # display the business prospect details
 def view_business_prospects(request):
-    prospects=business_prospect.objects.all().order_by('-lead_id')
+    prospects=business_prospect.objects.all().order_by('-created_date')
     page=Paginator(prospects,10)
     page_list=request.GET.get('page')
     page = page.get_page(page_list)
@@ -39,9 +39,10 @@ def save_feedback(request, prospect_id):
         if form.is_valid():
             feedback = form.cleaned_data['feedback']
             Feedback.objects.create(prospect=prospect, feedback=feedback)
+            return redirect('prospects:save_feedback',prospect_id)
     else:
         form = FeedbackForm()
-    return render(request, 'prospects/feedback.html', {'prospect': prospect, 'form': form})
+        return render(request, 'prospects/feedback.html', {'prospect': prospect, 'form': form})
 
 # adding a new business prospect
 @login_required(login_url='auth_app:login')
@@ -90,7 +91,7 @@ def view_conversion_progress(request):
 def add_conversion_details(request):
     template='prospects/add conversion progress.html'
     if request.method == 'POST':
-        form=ConversionTrackerForm(request.POST)
+        form=ConversionTrackerForm(request.POST,request.FILES)
         if form.is_valid():            
             form.save()
             messages.success(request, f'Conversion details added successfully')
@@ -119,8 +120,8 @@ def update_demo_details(request, pk):
         form=ConversionTrackerForm(request.POST, instance=demodetails)
         if form.is_valid():
             form.save()
-            messages.success(request, f'Details sucessfully updated')
-            return redirect('prospects:conversion-tracker')
+            messages.success(request, f'Details sucessfully updated for  {pk}')
+            return redirect('prospects:demo-details',pk)
     else:
         form=ConversionTrackerForm(instance=demodetails)
     context={

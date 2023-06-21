@@ -20,28 +20,30 @@
   </head>
   <body>
     <div class="crm-home-bg">
-        <div class="container-fluid pd-x-0 pd-lg-x-10 pd-xl-x-0">
-          {% include 'navbar.html' %}
-
-          <div id="message">
-            {% if messages %}
-          {% for message in messages%}
-          <div class=" alert alert-{{message.tags}}" role="alert">
-              {{message}}
+        <div class="content">
+          <div class="container-fluid pd-x-0 pd-lg-x-10 pd-xl-x-0">
+            {% include 'navbar.html' %}
+  
+            <div id="message">
+              {% if messages %}
+            {% for message in messages%}
+            <div class=" alert alert-{{message.tags}}" role="alert">
+                {{message}}
+            </div>
+            {% endfor %}
+        
+            {% endif %}
+            </div>
+  
+            {% block content%} 
+            {% endblock %}
           </div>
-          {% endfor %}
-      
-          {% endif %}
-          </div>
-
-          {% block content%} 
-          {% endblock %}
         </div>
     </div>
 
 
     <!-- footer -->
-    <footer class="footer" style="background-color: #f2f2f2; padding: 12px;text-align: aside; color: #333;">
+    <footer class="mainfooter " style="background-color: #f2f2f2; padding: 12px;text-align: aside; color: #333;">
       <div class="row">
           <div class="col-md-10">
               <div class="p-1" style="margin: 0;">

@@ -59,6 +59,7 @@ class implementation(models.Model):
     end_date= models.DateField(null=True, blank=True)
     no_of_days=models.DurationField(blank=True)
     license_due=models.DateField(default=timezone.now)
+    implementation_report=models.FileField(upload_to='documents/' ,blank=True)
 
     def save(self, *args, **kwargs):
         self.no_of_days=self.end_date - self.start_date

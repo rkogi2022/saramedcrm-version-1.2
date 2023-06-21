@@ -11,6 +11,7 @@ class DateInput(forms.DateInput):
 
 class AddBussinessProspectForm(forms.ModelForm):
     created_date=forms.DateTimeField(label='Date',widget=DateInput)
+    comment=forms.CharField(widget=forms.Textarea(attrs={'class': 'feedback-textarea'}))
     class Meta:
         model=business_prospect
         fields=('facility_name','county','town','email','contact_person','phone_no','comment','created_date')
@@ -19,6 +20,8 @@ class FeedbackForm(forms.Form):
     feedback = forms.CharField(widget=forms.Textarea(attrs={'class': 'feedback-textarea'}))
 
 class ConversionTrackerForm(forms.ModelForm):
+    Attendees=forms.CharField(widget=forms.Textarea(attrs={'class': 'feedback-textarea'}))
+    feedback=forms.CharField(widget=forms.Textarea(attrs={'class': 'feedback-textarea'}))
     demodate=forms.DateTimeField(label='Demo Date',widget=DateInput,required=False)
     assessmentdate=forms.DateTimeField(label='Assessment Date',widget=DateInput,required=False)
     reportdate=forms.DateTimeField(label='Report Dissemination Date',widget=DateInput,required=False)

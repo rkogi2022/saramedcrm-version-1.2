@@ -2,15 +2,18 @@
 {% extends 'base.html' %}
 {% block content %}
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb breadcrumb-css">
-      <li class="breadcrumb-item active" aria-current="page" style="font-size: x-large; color: white;">Implementation Details</li>
-    </ol>
-  </nav>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Accounts</li>
+  </ol>
+</nav>
+
 <div class="card">
     <div class="card-header">
         <div class="card-body">
             <div class="row">
-                <div class="col-md-5"></div>
+                <div class="col-md-5">
+                  <h4>Implementation Details</h4>
+                </div>
                 <div class="col-md-5"></div>
                 <div class="col-md-2"> 
                     <a href="{%url 'payments:create_implementation' %}"><button type="submit" class="btn button-add">Create Account</button></a>

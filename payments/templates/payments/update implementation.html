@@ -1,11 +1,11 @@
 {% extends 'main.html' %}
 {% block content %}
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a style="font-size: x-large; color:black; text-decoration: none;"  href="{% url 'payments:receiptsdetails' %}">Receipt</a></li>
-      <li class="breadcrumb-item active" style="font-size: x-large; color: white;" aria-current="page">Update Implementation Dates</li>
-    </ol>
-  </nav>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'payments:receiptsdetails' %}">Receipts</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Update Implementation Details</li>
+  </ol>
+</nav>
 <center>
     <form method = 'POST' enctype="multipart/form-data">
         {% csrf_token %}

@@ -116,9 +116,10 @@ def delete_receipt(request,id):
 # transactional reports view
 def transactional_report(request):
     template='payments/transactional reports.html'
-    moneyreports=business_prospect.objects.annotate(total_amount_paid=Sum('receipt__amt_paid'),
-                                                    total_invoices=Sum('invoice__total_cost'),
-                                                    ).annotate(balance=F('total_invoices') - F('total_amount_paid'))
+    moneyreports=business_prospect.objects.annotate(
+        total_amount_paid=Sum('receipt__amt_paid'),
+        total_invoices=Sum('invoice__total_cost'),
+        ).annotate(balance=F('total_invoices') - F('total_amount_paid'))
     page=Paginator(moneyreports,10)
     page_list=request.GET.get('page')
     page = page.get_page(page_list)
@@ -153,8 +154,9 @@ def implementation_dates(request, id):
 def create_implementation(request):
     template='payments/add implementation.html'
     if request.method == 'POST':
-        form=AddImplementationDetails(request.POST)
-        if form.is_valid():            
+        form=AddImplementationDetails(request.POST,request.FILES)
+        if form.is_valid():    
+            uploaded_file = request.FILES['implementation_report']        
             form.save()
             messages.success(request, f'The dates were added successfully')
             return redirect('payments:clients-details')

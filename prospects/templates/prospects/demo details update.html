@@ -1,9 +1,23 @@
 {% extends 'main.html' %}
 {% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-items me-auto mb-8 mb-lg-0" >
+        <li class="nav-item" style="left: 10px;">
+          <a class="nav-link active" aria-current="page" href="{% url 'prospects:conversion-tracker' %}">Active Conversions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'prospects:business-prospects' %}">Prospects</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a style="font-size: x-large; color:black; text-decoration: none;"  href="{% url 'prospects:conversion-tracker' %}">Conversion Progress</a></li>
-      <li class="breadcrumb-item active" style="font-size: x-large; color: black;" aria-current="page">Update Demo Details</li>
+      <li class="breadcrumb-item"><a  href="{% url 'prospects:conversion-tracker' %}">Conversion Progress</a></li>
+      <li class="breadcrumb-item active"  aria-current="page">Update Demo Details</li>
     </ol>
   </nav>
 <center>

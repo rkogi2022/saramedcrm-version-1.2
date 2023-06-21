@@ -11,3 +11,5 @@ admin.site.register(business_prospect, businessProspectsAdmin)
 class FeedbackAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     ...
 admin.site.register(Feedback, FeedbackAdmin)
+
+admin.site.register(conversion_tracker)
