@@ -20,7 +20,7 @@ from .forms import AddImplementationDetails
 # displaying list of invoices
 def invoice_details(request):
     invoicedetails=invoice.objects.all().order_by('-created_date')
-    page=Paginator(invoicedetails,10)
+    page=Paginator(invoicedetails,6)
     page_list=request.GET.get('page')
     page = page.get_page(page_list)
     context={
@@ -59,7 +59,7 @@ def delete_invoice(request,id):
 def receipts_details(request):
     paid_amount= receipt.objects.aggregate(total_amount=Sum('amt_paid'))
     receiptsdetails=receipt.objects.all().order_by('-created_date')
-    page=Paginator(receiptsdetails,10)
+    page=Paginator(receiptsdetails,6)
     page_list=request.GET.get('page')
     page = page.get_page(page_list)
     context={
@@ -155,8 +155,7 @@ def create_implementation(request):
     template='payments/add implementation.html'
     if request.method == 'POST':
         form=AddImplementationDetails(request.POST,request.FILES)
-        if form.is_valid():    
-            uploaded_file = request.FILES['implementation_report']        
+        if form.is_valid():         
             form.save()
             messages.success(request, f'The dates were added successfully')
             return redirect('payments:clients-details')

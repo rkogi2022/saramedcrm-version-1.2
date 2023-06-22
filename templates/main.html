@@ -50,10 +50,16 @@
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Add the following script after including the Bootstrap JS library -->
+<!-- setting timer for flash messages -->
 <script>
-  $(document).ready(function() {
-      $('#deleteModal').modal('show');
-  });
+  // Get the message element
+  var messageElement = document.getElementById("message");
+
+  // Set a timeout of 10 seconds
+  setTimeout(function() {
+    // Remove the message after the timeout
+    messageElement.remove();
+  }, 3000);
 </script>
 
 

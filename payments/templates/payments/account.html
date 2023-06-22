@@ -24,20 +24,18 @@
             <table class="table data table-sm" >
                     <tr>
                     <th>Facility</th>
-                    <th>Town</th>
-                    <th>County</th>
                     <th>No of Days</th>
                     <th>Licence Due Date</th>
+                    <th>Implementation Report</th>
                     <th>Action</th>
                     </tr>
 
                     {% for n in page.object_list %}
                     <tr>
-                    <td><a href="{% url 'payments:implementation_dates' n.id %}">{{ n.facility_name|upper}}</a></td>
-                    <td>{{ n.town|upper }}</td>
-                    <td>{{ n.county|upper }}</td>         
+                    <td><a href="{% url 'payments:implementation_dates' n.id %}">{{ n.facility_name|upper}}</a></td>       
                     <td>{{ n.no_of_days }}</td>
                     <td>{{ n.license_due}}</td>
+                    <td>{{n.implementation_report}}</td>
                     <td>
                         <a href="{%url 'payments:update_implementation' n.id %}"><span class="fa fa-edit" style="color:orange; font-size: large;"></span></a>&nbsp;
                         <a href="{%url 'payments:delete_implementation' n.id %}"><span class="fa fa-trash" style="color: red; font-size: large;"></span></a>

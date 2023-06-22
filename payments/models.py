@@ -52,8 +52,6 @@ class receipt(models.Model):
 class implementation(models.Model):
     id=models.BigAutoField(primary_key=True)
     facility_name=models.ForeignKey(receipt, null=True, on_delete=models.CASCADE)
-    town=models.CharField(max_length=100, null=False, blank=False,)
-    county=models.CharField(max_length=70, null=False, blank=False,)
     start_date = models.DateField(null=True, blank=True)
     golive_date=models.DateField(null=True, blank=True)
     end_date= models.DateField(null=True, blank=True)
