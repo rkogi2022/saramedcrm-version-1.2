@@ -2,6 +2,7 @@
 {% block content %}
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
+        <li class="breadcrumb-item"> <a href="{% url 'auth_app:home' %}">Home</a></li>
       <li class="breadcrumb-item"><a href="{%url 'payments:clients-details' %}">Accounts</a></li>
       <li class="breadcrumb-item active" aria-current="page">Add Implementation dates</li>
     </ol>

@@ -15,9 +15,10 @@
   </div>
 </nav>
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb breadcrumb-css">
-      <li class="breadcrumb-item" ><a style="font-size: x-large; color:black; text-decoration: none;" href="{%url 'prospects:business-prospects' %}">Business Prospects</a></li>
-      <li class="breadcrumb-item active" aria-current="page" style="font-size: x-large; color: white;">Update Prospect details</li>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"> <a href="{% url 'auth_app:home' %}">Home</a></li>
+      <li class="breadcrumb-item" ><a href="{%url 'prospects:business-prospects' %}">Business Prospects</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Update Prospect details</li>
     </ol>
   </nav>
 <center>
